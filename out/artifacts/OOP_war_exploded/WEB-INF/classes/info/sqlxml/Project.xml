@@ -35,7 +35,7 @@
   </insert>
 
     <update id="updateById" parameterType="info.Project">
-        UPDATE project set name = #{name},classroom = #{classroom},detail = #{detail},member = #{member},link = #{link},eval = #{eval},teacher_eval = #{teacher_eval} where id = #{id};
+        UPDATE project set name = #{name},classroom = #{classroom},detail = #{detail},document = #{document},link = #{link} where id = #{id};
     </update>
 
 </mapper>

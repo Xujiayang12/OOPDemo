@@ -16,6 +16,7 @@
         <result column="admin" jdbcType="INTEGER" property="admin"/>
         <result column="project" jdbcType="INTEGER" property="project"/>
         <result column="self_score" jdbcType="INTEGER" property="self_score"/>
+        <result column="teacher_score" jdbcType="INTEGER" property="teacher_score"/>
     </resultMap>
 
     <select id="loginCheck" parameterType="info.User" resultMap="UserResult">
@@ -47,11 +48,11 @@
   </select>
 
     <insert id="signUp" parameterType="info.User">
-    INSERT INTO user (account, name, password, classroom, qq, phone, admin, project) VALUES (#{account},#{name},#{password},#{classroom},#{qq},#{phone},0,0)
+    INSERT INTO user (account, name, password, classroom, qq, phone, admin, project,self_score,teacher_score) VALUES (#{account},#{name},#{password},#{classroom},#{qq},#{phone},0,0,0,0)
   </insert>
 
     <insert id="adminAdd" parameterType="info.User">
-    INSERT INTO user (account, name, password, classroom, qq, phone, admin, project) VALUES (#{account},#{name},#{password},#{classroom},#{qq},#{phone},#{admin},0)
+    INSERT INTO user (account, name, password, classroom, qq, phone, admin, project,self_score,teacher_score) VALUES (#{account},#{name},#{password},#{classroom},#{qq},#{phone},#{admin},0,0,0)
   </insert>
 
     <delete id="deleteById" parameterType="int">
@@ -73,44 +74,9 @@
     <update id="updateByAccount" parameterType="info.User">
         UPDATE user set name = #{name},password = #{password},classroom = #{classroom},qq = #{qq},phone = #{phone},admin = #{admin},project = #{project} where account = #{account};
     </update>
-    <!--<select id="version" parameterType="long" resultType="int">-->
-    <!--SELECT version FROM user WHERE id = #{id,jdbcType=INTEGER}-->
-    <!--</select>-->
-    <!--WHERE account = #{account:VARCHAR} AND password = #{password:VARCHAR}-->
-    <!--<delete id="delete" parameterType="UserAlias">-->
-    <!--DELETE FROM user WHERE id = #{id:INTEGER}-->
-    <!--</delete>-->
 
-    <!--<insert id="insert" parameterType="UserAlias" useGeneratedKeys="false">-->
-    <!--INSERT INTO user-->
-    <!--( id,-->
-    <!--username,-->
-    <!--password,-->
-    <!--administrator-->
-    <!--)-->
-    <!--VALUES-->
-    <!--( #{id},-->
-    <!--#{username,jdbcType=VARCHAR},-->
-    <!--#{password.encrypted:VARCHAR},-->
-    <!--#{administrator,jdbcType=BOOLEAN}-->
-    <!--)-->
-    <!--</insert>-->
+    <update id="setSelfScore" parameterType="info.User">
+        UPDATE user set self_score = #{self_score} where id = #{id};
+    </update>
 
-    <!--<update id="update" parameterType="UserAlias">-->
-    <!--UPDATE user SET-->
-    <!--username = #{username,jdbcType=VARCHAR},-->
-    <!--password = #{password.encrypted,jdbcType=VARCHAR},-->
-    <!--administrator = #{administrator,jdbcType=BOOLEAN}-->
-    <!--WHERE-->
-    <!--id = #{id,jdbcType=INTEGER}-->
-    <!--</update>-->
-
-    <!--&lt;!&ndash;   Unique constraint check &ndash;&gt;-->
-    <!--<select id="isUniqueUsername" parameterType="map" resultType="boolean">-->
-    <!--SELECT (count(*) = 0)-->
-    <!--FROM user-->
-    <!--WHERE ((#{userId,jdbcType=BIGINT} IS NOT NULL AND id != #{userId,jdbcType=BIGINT}) OR #{userId,jdbcType=BIGINT} IS-->
-    <!--NULL)  &lt;!&ndash; other than me &ndash;&gt;-->
-    <!--AND (username = #{username,jdbcType=VARCHAR})-->
-    <!--</select>-->
 </mapper>

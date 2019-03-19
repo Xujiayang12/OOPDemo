@@ -43,17 +43,37 @@
     }
     User user = User.findByAccount(user_name);
     int id = user.getProject();
-    Project project = Project.findById(id);
-    List<User> member = User.findAllByProject(user.getProject());
-    String doc = project.getDocument();
-    request.setAttribute("doc", doc);
+    System.out.println(id);
+    Project project;
+    List<User> member;
+    String doc;
+    if(id == 0)
+    {
+        project = new Project();
+        project.setDocument("");
+        project.setClassroom("");
+        project.setDetail("");
+        project.setLink("");
+        project.setName("请加入一个项目");
+        project.setId(0);
+        member = null;
+        doc = " ";
+    }
+    else
+    {
+        project = Project.findById(id);
+        member = User.findAllByProject(user.getProject());
+        doc = project.getDocument();
+        request.setAttribute("doc", doc);
+    }
+
 %>
 <div style="position: relative; height: 75px;">
     <div class="fixed-action-btn horizontal" style="position: absolute; display: inline-block; right: 30px;">
-        <a class="btn-floating btn blue" title="编辑项目">
+        <a class="btn-floating btn blue" title="编辑项目" href="markdown/examples/EditProject.jsp">
             <i class="large material-icons">mode_edit</i>
         </a>
-        <a class="btn-floating btn red" title="退出项目">
+        <a class="btn-floating btn red" title="退出项目" onclick="del()">
             <i class="large material-icons">exit_to_app</i>
         </a>
     </div>
@@ -73,8 +93,14 @@
                     class="material-icons">people</i></a>
             <div class="card-action">
                 <%
-                    for (User u : member) {
-                        out.print("<div class=\"chip\">" + u.getName() + "</div>");
+                    try{
+                        for (User u : member) {
+                            out.print("<div class=\"chip\">" + u.getName() + "</div>");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
                     }
 
                 %>
@@ -105,7 +131,25 @@ ${doc}
             </a>
             <label><h4><%=project.getLink()%></h4></label>
         </div>
-        <div class="mui-tabs__pane" id="pane-justified-3">评分信息</div>
+        <div class="mui-tabs__pane" id="pane-justified-3">
+            <ul class="collection">
+                <%
+                    try{
+                        for(User u:member)
+                        {
+                            out.print("<li class=\"collection-item avatar\"><i class=\"material-icons circle green\">person</i><span class=\"title\">"+u.getName()+"</span><p>自评："+u.getSelf_score()+" 分<br>老师评分："+u.getTeacher_score()+" 分</p></li>");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+
+                %>
+            </ul>
+
+
+        </div>
     </div>
 </div>
 <script type="text/javascript">
@@ -122,6 +166,19 @@ ${doc}
             codeFold: true
         });
     });
+
+    function del() {
+        var r = confirm("你确定要退出此项目吗？")
+        if(r == true)
+        {
+            window.location.href="QuitProject.jsp";
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 </script>
 </body>
 </html>

@@ -29,13 +29,13 @@
 //    String document = request.getParameter("document");
     if(Project.setProject(name,classroom,detail,link,document))
     {
-        out.print("<script type='text/javascript'>alert('创建成功');");
+        out.print("<script type='text/javascript'>alert('创建成功');</script>");
     }
     else
     {
-        out.print("<script type='text/javascript'>alert('创建失败');");
+        out.print("<script type='text/javascript'>alert('创建失败');</script>");
     }
-    out.print("window.history.back();window.location.reload();");
+    out.print("<script type='text/javascript'>window.history.back();window.location.reload();</script>");
 %>
 </body>
 </html>

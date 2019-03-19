@@ -143,7 +143,11 @@
       <Position>10</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <key id="37" parent="9">
+    <column id="37" parent="9" name="teacher_score">
+      <Position>11</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <key id="38" parent="9">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class User {
     private String account, name, password, classroom, qq, phone;
-    private int id, admin, project,self_score;
+    private int id, admin, project,self_score,teacher_score;
 
     public String getAccount() {
         return account;
@@ -92,6 +92,14 @@ public class User {
 
     public void setSelf_score(int self_score) {
         this.self_score = self_score;
+    }
+
+    public int getTeacher_score() {
+        return teacher_score;
+    }
+
+    public void setTeacher_score(int teacher_score) {
+        this.teacher_score = teacher_score;
     }
 
     public void setAllWhenSignUp(String account, String name, String password, String classroom, String qq, String phone) {
@@ -346,6 +354,25 @@ public class User {
         try {
             sqlSession = dbAccess.getSqlsession();
             sqlSession.update("User.updateById", u);
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
+    public static void setSelfScore(int id,int self_score) {
+        DBAccess dbAccess = new DBAccess();
+        SqlSession sqlSession = null;
+        try {
+            User u = new User();
+            u.setId(id);
+            u.setSelf_score(self_score);
+            sqlSession = dbAccess.getSqlsession();
+            sqlSession.update("User.setSelfScore", u);
             sqlSession.commit();
         } catch (IOException e) {
             e.printStackTrace();

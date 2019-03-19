@@ -17,6 +17,21 @@
 <body>
 <%
     request.setCharacterEncoding("utf-8");
+    Cookie[] cookies = request.getCookies();
+    String user_name = "";
+    String pass_word = "";
+    if (cookies != null && cookies.length > 0) {
+        for (Cookie c : cookies) {
+            if (c.getName().equals("username")) {
+                user_name = URLDecoder.decode(c.getValue(), "utf-8");
+            }
+            if (c.getName().equals("password")) {
+                pass_word = URLDecoder.decode(c.getValue(), "utf-8");
+            }
+        }
+    }
+    User user = User.findByAccount(user_name);
+    int id = user.getProject();
     String name = URLEncoder.encode(request.getParameter("projectname"),"utf-8");
     String classroom = URLEncoder.encode(request.getParameter("classroom"),"utf-8");
     String detail = URLEncoder.encode(request.getParameter("detail"),"utf-8");
@@ -27,13 +42,13 @@
 //    String detail = request.getParameter("detail");
 //    String link = request.getParameter("link");
 //    String document = request.getParameter("document");
-    if(Project.setProject(name,classroom,detail,link,document))
+    if(Project.updateProject(id,name,classroom,detail,document,link))
     {
-        out.print("<script type='text/javascript'>alert('创建成功');</script>");
+        out.print("<script type='text/javascript'>alert('修改成功');</script>");
     }
     else
     {
-        out.print("<script type='text/javascript'>alert('创建失败');</script>");
+        out.print("<script type='text/javascript'>alert('修改失败');</script>");
     }
     out.print("<script type='text/javascript'>window.history.back();window.location.reload();</script>");
 %>

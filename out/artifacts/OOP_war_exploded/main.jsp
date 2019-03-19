@@ -332,7 +332,7 @@
                     <a href="JoinProject.jsp" target="main">
                         <i class="icon material-icons sidebar-icons">add</i>加入项目</a></li>
                 <li class="nav-item">
-                    <a href="SeeProject.jsp" target="main">
+                    <a href="SelfScore.jsp" target="main">
                         <i class="icon material-icons sidebar-icons">comment</i>我的自评</a></li>
                 <li class="nav-item">
                     <a href="DeleteProject.jsp" target="main">

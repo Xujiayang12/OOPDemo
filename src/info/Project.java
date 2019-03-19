@@ -158,7 +158,7 @@ public class Project {
         }
     }
 
-    public static void updateProject(int id,String name,String classroom,String detail,String member,String link)
+    public static boolean updateProject(int id,String name,String classroom,String detail,String document,String link)
     {
         DBAccess dbAccess = new DBAccess();
         SqlSession sqlSession = null;
@@ -168,13 +168,15 @@ public class Project {
             old_project.setClassroom(classroom);
             old_project.setDetail(detail);
             old_project.setLink(link);
-            old_project.setMember(member);
             old_project.setName(name);
+            old_project.setDocument(document);
             sqlSession = dbAccess.getSqlsession();
             sqlSession.update("Project.updateById",old_project);
             sqlSession.commit();
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         } finally {
             if (sqlSession != null) {
                 sqlSession.close();
