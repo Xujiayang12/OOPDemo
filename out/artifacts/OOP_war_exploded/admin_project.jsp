@@ -33,31 +33,29 @@
     }
     User user = User.findByAccount(user_name);
     String cls = user.getClassroom();
-    List<User> stulist = User.findAllByClass(cls);
+    List<Project> projectlist = Project.findByClass(cls);
+
 %>
 
 <div class="container">
     <div class="jumbotron">
         <h1><%=cls%></h1>
-        <a href="admin_add_people.jsp"><button type="button" class="btn btn-primary" href="admin_add_people.jsp">添加成员</button></a>
+        <h5>项目总览</h5>
     </div>
     <table class="table table-hover">
         <thead>
         <tr>
             <th>序号</th>
-            <th>学号</th>
-            <th>姓名</th>
-            <th>手机</th>
-            <th>加入的项目</th>
+            <th>项目名称</th>
+            <th>项目成员</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <%
-            for(User u:stulist)
+            for(Project p:projectlist)
             {
-                if(u.getAdmin()==0)
-                    out.print("<tr><td>"+u.getId()+"</td><td>"+u.getAccount()+"</td><td>"+u.getName()+"</td><td>"+u.getPhone()+"</td><td>"+u.getProjectName()+"</td><td><a href=\"admin_do_delete.jsp?id="+u.getId()+"\"><button type=\"button\" class=\"btn btn-danger\">删除</button></a></td></tr>");
+                out.print("<tr><td>"+p.getId()+"</td><td>"+p.getName()+"</td><td>"+Project.getMemberTxt(p)+"</td><td><a href=\"admin_project_detail.jsp?id="+p.getId()+"\"><button type=\"button\" class=\"btn btn-info\">详情页</button></a></td></tr>");
             }
         %>
         </tbody>

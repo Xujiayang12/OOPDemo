@@ -56,7 +56,8 @@
         <%
             for(User u:stulist)
             {
-                out.print("<tr><td>"+u.getId()+"</td><td>"+u.getAccount()+"</td><td>"+u.getName()+"</td><td>"+u.getPhone()+"</td><td>"+u.getProjectName()+"</td><td><a href=\"admin_do_delete.jsp?id="+u.getId()+"\"><button type=\"button\" class=\"btn btn-danger\">删除</button></a></td></tr>");
+                if(u.getAdmin()==0)
+                    out.print("<tr><td>"+u.getId()+"</td><td>"+u.getAccount()+"</td><td>"+u.getName()+"</td><td>"+u.getPhone()+"</td><td>"+u.getProjectName()+"</td><td><a href=\"admin_do_delete.jsp?id="+u.getId()+"\"><button type=\"button\" class=\"btn btn-danger\">删除</button></a></td></tr>");
             }
         %>
         </tbody>

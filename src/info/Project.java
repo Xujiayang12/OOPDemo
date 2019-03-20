@@ -115,13 +115,13 @@ public class Project {
         }
     }
 
-    public static Project findByClass(String classroom) {
+    public static List<Project> findByClass(String classroom) {
         DBAccess dbAccess = new DBAccess();
         SqlSession sqlSession = null;
         try {
             sqlSession = dbAccess.getSqlsession();
             List<Project> projectList = sqlSession.selectList("Project.findByClass", classroom);
-            return projectList.get(0);
+            return projectList;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -186,6 +186,18 @@ public class Project {
     public static void preset(String name,String classroom,String detail,String link,String document)
     {
         setProject(name,classroom,detail,link,document);
+    }
+
+    public static String getMemberTxt(Project p)
+    {
+        int pid = p.getId();
+        List<User> member = User.findAllByProject(pid);
+        String txt = "";
+        for(User u:member)
+        {
+            txt = txt + u.getName() + "  ";
+        }
+        return txt;
     }
 
     public static void main(String args[]) {

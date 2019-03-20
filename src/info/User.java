@@ -383,6 +383,25 @@ public class User {
         }
     }
 
+    public static void setTeacherScore(int id,int score) {
+        DBAccess dbAccess = new DBAccess();
+        SqlSession sqlSession = null;
+        try {
+            User u = new User();
+            u.setId(id);
+            u.setTeacher_score(score);
+            sqlSession = dbAccess.getSqlsession();
+            sqlSession.update("User.setTeacherScore", u);
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
     public static String getProjectNameById(int id) {
         if (id == 0) return "无";
         else {

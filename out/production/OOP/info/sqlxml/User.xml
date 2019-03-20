@@ -79,4 +79,8 @@
         UPDATE user set self_score = #{self_score} where id = #{id};
     </update>
 
+    <update id="setTeacherScore" parameterType="info.User">
+        UPDATE user set teacher_score = #{teacher_score} where id = #{id};
+    </update>
+
 </mapper>

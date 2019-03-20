@@ -38,8 +38,9 @@
 
 <div class="container">
     <div class="jumbotron">
-        <h1><%=cls%></h1>
-        <a href="admin_add_people.jsp"><button type="button" class="btn btn-primary" href="admin_add_people.jsp">添加成员</button></a>
+        <h1><%=cls%>
+        </h1>
+        <h5>成绩管理</h5>
     </div>
     <table class="table table-hover">
         <thead>
@@ -47,22 +48,33 @@
             <th>序号</th>
             <th>学号</th>
             <th>姓名</th>
-            <th>手机</th>
             <th>加入的项目</th>
+            <th>自评分数</th>
+            <th>老师评分</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <%
-            for(User u:stulist)
-            {
-                if(u.getAdmin()==0)
-                    out.print("<tr><td>"+u.getId()+"</td><td>"+u.getAccount()+"</td><td>"+u.getName()+"</td><td>"+u.getPhone()+"</td><td>"+u.getProjectName()+"</td><td><a href=\"admin_do_delete.jsp?id="+u.getId()+"\"><button type=\"button\" class=\"btn btn-danger\">删除</button></a></td></tr>");
+            for (User u : stulist) {
+                if (u.getAdmin() == 0)
+                    out.print("<tr><td>" + u.getId() + "</td><td>" + u.getAccount() + "</td><td>" + u.getName() + "</td><td><a href=\"admin_project_detail.jsp?id=" + u.getProject() + "\">" + u.getProjectName() + "</a></td><td>" + u.getSelf_score() + "</td><td>" + u.getTeacher_score() + "</td><td><a onclick=\"score(" + u.getId() + ")\"><button type=\"button\" class=\"btn btn-primary\">评分</button></a></td></tr>");
             }
         %>
         </tbody>
     </table>
 </div>
-
+<script>
+    function score(uid) {
+        teacher_score = prompt("请输入给这位同学的评分", "0");
+        var real_score = parseInt(teacher_score);
+        if (real_score >= 0) {
+            window.location.href = 'admin_pingfen.jsp?' + uid + "&" + teacher_score;
+        }
+        else {
+            alert("请输入有效有效分数");
+        }
+    }
+</script>
 </body>
 </html>

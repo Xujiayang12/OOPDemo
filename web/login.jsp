@@ -314,7 +314,7 @@
                                         <span class="weui-form-preview__value">建议使用Google浏览器</span>
                                     </div>
                                 </div>
-                                <label for="weuiAgree" class="weui-agree">
+                                <label for="weuiAgree" class="weui-agree" style="display: none">
                                     <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox"
                                            name="isUseCookie" id="s11" checked="checked">
                                     <span class="weui-agree__text">十天内记住我</span>
