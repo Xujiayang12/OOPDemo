@@ -8,7 +8,7 @@ import java.util.List;
 
 public class User {
     private String account, name, password, classroom, qq, phone;
-    private int id, admin, project,self_score,teacher_score;
+    private int id, admin, project, self_score, teacher_score;
 
     public String getAccount() {
         return account;
@@ -364,7 +364,7 @@ public class User {
         }
     }
 
-    public static void setSelfScore(int id,int self_score) {
+    public static void setSelfScore(int id, int self_score) {
         DBAccess dbAccess = new DBAccess();
         SqlSession sqlSession = null;
         try {
@@ -383,7 +383,7 @@ public class User {
         }
     }
 
-    public static void setTeacherScore(int id,int score) {
+    public static void setTeacherScore(int id, int score) {
         DBAccess dbAccess = new DBAccess();
         SqlSession sqlSession = null;
         try {
@@ -410,7 +410,7 @@ public class User {
         }
     }
 
-    public static void updateHisProject(int id,int pid){
+    public static void updateHisProject(int id, int pid) {
         DBAccess dbAccess = new DBAccess();
         SqlSession sqlSession = null;
         try {
@@ -429,7 +429,26 @@ public class User {
         }
     }
 
+    public static int[] getSummary(List<User> stulist) {
+        int[] data = new int[9];
+        for (User u : stulist) {
+            if (u.getAdmin() == 0) {
+                int i = u.getTeacher_score();
+                if (i <= 100 && i >= 96) data[0] += 1;
+                else if (i <= 95 && i >= 91) data[1] += 1;
+                else if (i <= 90 && i >= 86) data[2] += 1;
+                else if (i <= 85 && i >= 81) data[3] += 1;
+                else if (i <= 80 && i >= 76) data[4] += 1;
+                else if (i <= 75 && i >= 71) data[5] += 1;
+                else if (i <= 70 && i >= 66) data[6] += 1;
+                else if (i <= 65 && i >= 60) data[7] += 1;
+                else if (i < 60) data[8] += 1;
+            }
+        }
+        return data;
+    }
+
     public static void main(String args[]) {
-        updateHisProject(4,6);
+        updateHisProject(4, 6);
     }
 }

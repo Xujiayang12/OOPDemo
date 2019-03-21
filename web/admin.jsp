@@ -332,7 +332,7 @@
                     <a href="admin_score.jsp" target="main">
                         <i class="icon material-icons sidebar-icons">school</i>成绩管理</a></li>
                 <li class="nav-item">
-                    <a href="SeeProject.jsp" target="main">
+                    <a href="admin_summary.jsp" target="main">
                         <i class="icon material-icons sidebar-icons">event_note</i>成绩统计</a></li>
                 <li class="nav-item">
                     <a href="DeleteProject.jsp" target="main">
