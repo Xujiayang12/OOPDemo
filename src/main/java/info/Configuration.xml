@@ -45,8 +45,8 @@
     </environments>
 
     <mappers>
-        <mapper resource="info/sqlxml/User.xml"/>
-        <mapper resource="info/sqlxml/Project.xml"/>
+        <mapper resource="sqlxml/User.xml"/>
+        <mapper resource="sqlxml/Project.xml"/>
     </mappers>
 
 </configuration>
