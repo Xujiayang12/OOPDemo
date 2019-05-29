@@ -23,7 +23,7 @@ public class User {
     }
 
     public String getClassroom() {
-        return TextEdit.de_coder(classroom);
+        return classroom;
     }
 
     public String getClassroom(int i) {
@@ -449,6 +449,10 @@ public class User {
     }
 
     public static void main(String args[]) {
-        updateHisProject(4, 6);
+
+        User user = User.findByAccount("软工1班");
+        String cls = user.getClassroom();
+        List<User> stulist = User.findAllByClass(cls);
+        System.out.println(stulist.size());
     }
 }

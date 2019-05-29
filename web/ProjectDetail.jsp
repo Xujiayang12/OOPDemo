@@ -127,7 +127,7 @@ ${doc}
         </div>
         <div class="mui-tabs__pane" id="pane-justified-2">
             <a class="waves-effect waves-light btn blue">
-                <i class="material-icons right" onclick="window.open('<%=project.getLink()%>');">play_for_work</i>下载
+                <i class="material-icons right" onclick="window.open('<%=project.getLink()%>/archive/master.zip');">play_for_work</i>下载
             </a>
             <label><h4><%=project.getLink()%></h4></label>
         </div>

@@ -39,7 +39,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text">项目地址</span>
         </div>
-        <input type="url" class="form-control" placeholder="请输入工程项目的Git地址" name="link">
+        <input type="url" class="form-control" placeholder="请输入GitHub项目页面地址" name="link">
     </div>
 
     <h5>项目文档</h5>

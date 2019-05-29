@@ -58,6 +58,7 @@
         project.setId(0);
         member = null;
         doc = " ";
+        String download = project.getLink() + "/archive/master.zip";
     }
     else
     {
@@ -65,7 +66,9 @@
         member = User.findAllByProject(user.getProject());
         doc = project.getDocument();
         request.setAttribute("doc", doc);
+        String download = project.getLink() + "/archive/master.zip";
     }
+    String download = project.getLink() + "/archive/master.zip";
 
 %>
 <div style="position: relative; height: 75px;">
@@ -127,7 +130,7 @@ ${doc}
         </div>
         <div class="mui-tabs__pane" id="pane-justified-2">
             <a class="waves-effect waves-light btn blue">
-                <i class="material-icons right" onclick="window.open('<%=project.getLink()%>');">play_for_work</i>下载
+                <i class="material-icons right" onclick="window.open('<%=download%>');">play_for_work</i>下载
             </a>
             <label><h4><%=project.getLink()%></h4></label>
         </div>

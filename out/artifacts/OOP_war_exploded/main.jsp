@@ -334,9 +334,6 @@
                 <li class="nav-item">
                     <a href="SelfScore.jsp" target="main">
                         <i class="icon material-icons sidebar-icons">comment</i>我的自评</a></li>
-                <li class="nav-item">
-                    <a href="DeleteProject.jsp" target="main">
-                        <i class="icon material-icons sidebar-icons">textsms</i>评价他人</a></li>
                 <div class="divider"></div>
                 <li class="nav-item">
                     <a href="quit.jsp" target="_top">
